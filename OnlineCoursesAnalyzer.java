@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- *
  * This is just a demo for you, please run it on JDK17 (some statements may be not allowed in lower version).
  * This is just a demo, and you can extend and implement functions
  * based on this demo, or implement it in a different way.
@@ -17,10 +16,10 @@ public class OnlineCoursesAnalyzer {
     List<Course> courses = new ArrayList<>();
 
     public OnlineCoursesAnalyzer(String datasetPath) {
-        BufferedReader br = null;
-        String line;
-        try {
-            br = new BufferedReader(new FileReader(datasetPath, StandardCharsets.UTF_8));
+    BufferedReader br = null;
+    String line;
+    try {
+        br = new BufferedReader(new FileReader(datasetPath, StandardCharsets.UTF_8));
             br.readLine();
             while ((line = br.readLine()) != null) {
                 String[] info = line.split(",(?=([^\\\"]*\\\"[^\\\"]*\\\")*[^\\\"]*$)", -1);
@@ -48,7 +47,7 @@ public class OnlineCoursesAnalyzer {
 
     //1
     public Map<String, Integer> getPtcpCountByInst() {
-        Stream<Course> stream=courses.stream();
+    Stream<Course> stream=courses.stream();
         Map<String, Integer> map=new HashMap();
         map=stream.sorted(Comparator.comparing(Course::getInstitution).reversed()).collect(Collectors.groupingBy(Course::getInstitution,Collectors.summingInt(Course::getParticipants)));
 //        map.forEach((k, v) -> System.out.println(k + "=" + v));
@@ -57,7 +56,7 @@ public class OnlineCoursesAnalyzer {
 
     //2
     public Map<String, Integer> getPtcpCountByInstAndSubject() {
-        Stream<Course> stream=courses.stream();
+    Stream<Course> stream=courses.stream();
         Map<String, Integer> map=new HashMap<>();
         map=stream.collect(Collectors.groupingBy(Course::getInstAndSubject,Collectors.summingInt(Course::getParticipants)));
         Map<String, Integer> sortedMap = map.entrySet().stream()
@@ -70,7 +69,7 @@ public class OnlineCoursesAnalyzer {
 
     //3
     public Map<String, List<List<String>>> getCourseListOfInstructor() {
-        Stream<Course> stream=courses.stream();
+    Stream<Course> stream=courses.stream();
         Map<String,List<List<String>>> map=new HashMap<>();
         Map<String, Set<String>> independentlyResponsibleCourses = new HashMap<>();
         Map<String, Set<String>> coDevelopedCourses = new HashMap<>();
@@ -219,6 +218,7 @@ public class OnlineCoursesAnalyzer {
             String t=id_title.get(id);
             title_sim.put(t,similaraity);
         });
+//        System.out.println(idmap);
 //        System.out.println(title_sim);
         Map<String, Double> sortedMap = title_sim.entrySet().stream()
                 .sorted(Map.Entry.<String, Double>comparingByValue().thenComparing(Map.Entry.comparingByKey()))
@@ -315,99 +315,99 @@ class Course {
     }
 
     public String getInstitution() {
-        return institution;
+    return institution;
     }
 
     public String getNumber() {
-        return number;
+    return number;
     }
 
     public Date getLaunchDate() {
-        return launchDate;
+    return launchDate;
     }
 
     public String getTitle() {
-        return title;
+    return title;
     }
 
     public String getInstructors() {
-        return instructors;
+    return instructors;
     }
 
     public String getSubject() {
-        return subject;
+    return subject;
     }
 
     public int getYear() {
-        return year;
+    return year;
     }
 
     public int getHonorCode() {
-        return honorCode;
+    return honorCode;
     }
 
     public int getParticipants() {
-        return participants;
+    return participants;
     }
 
     public int getAudited() {
-        return audited;
+    return audited;
     }
 
     public int getCertified() {
-        return certified;
+    return certified;
     }
 
     public double getPercentAudited() {
-        return percentAudited;
+    return percentAudited;
     }
 
     public double getPercentCertified() {
-        return percentCertified;
+    return percentCertified;
     }
 
     public double getPercentCertified50() {
-        return percentCertified50;
+    return percentCertified50;
     }
 
     public double getPercentVideo() {
-        return percentVideo;
+    return percentVideo;
     }
 
     public double getPercentForum() {
-        return percentForum;
+    return percentForum;
     }
 
     public double getGradeHigherZero() {
-        return gradeHigherZero;
+    return gradeHigherZero;
     }
 
     public double getTotalHours() {
-        return totalHours;
+    return totalHours;
     }
 
     public double getMedianHoursCertification() {
-        return medianHoursCertification;
+    return medianHoursCertification;
     }
 
     public double getMedianAge() {
-        return medianAge;
+    return medianAge;
     }
 
     public double getPercentMale() {
-        return percentMale;
+    return percentMale;
     }
 
     public double getPercentFemale() {
-        return percentFemale;
+    return percentFemale;
     }
 
     public double getPercentDegree() {
-        return percentDegree;
+    return percentDegree;
     }
 
     public String getInstAndSubject(){
-        return institution+"-"+subject;
+    return institution+"-"+subject;
     }
-    
+
 }
